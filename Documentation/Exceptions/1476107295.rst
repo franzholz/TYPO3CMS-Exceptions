@@ -250,7 +250,7 @@ Reason
 
 We add wrong TCA parameters :
 
-::
+..  code-block:: php
 
     'maxDBListItems' => 0,
     'maxSingleDBListItems' => 0,
@@ -277,3 +277,52 @@ Solution
 --------
 
 Check that you do not have a null value for the :php:`maxDBListItems` and :php:`maxSingleDBListItems` parameters.
+
+TYPO3 12.4.19, 21.08.2024: PHP Warning: Undefined array key "renderType"
+========================================================================
+
+..  code-block:: text
+
+    PHP Warning: Undefined array key "renderType" in /var/www/html/vendor/typo3/cms-backend/Classes/Form/FormDataProvider/TcaSelectItems.php line 200
+
+Reason
+------
+
+TCA :ref:`Select field <t3tca:columns-select>` where the render type was accidently overridden
+
+Solution
+--------
+
+Fix TCA
+
+PHP 8: PHP Warning: Undefined array key "foo"
+=============================================
+
+..  code-block:: text
+
+    PHP Warning: Undefined array key "foo" in /var/www/html/Bar.php line 200
+
+Reason
+------
+
+The warning level for undefined array keys in PHP 8 is stronger than in PHP 7.
+
+
+Solution
+--------
+
+Use the double question mark (null coalescing) operator to fix the PHP code.
+
+before:
+
+..  code-block:: php
+
+    $value = $foo['bar']; 
+
+after:
+
+..  code-block:: php
+
+    $value = ($foo['bar'] ?? false);
+
+
